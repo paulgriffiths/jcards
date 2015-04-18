@@ -39,35 +39,35 @@ public class AddTest {
     
     @Test
     public void testAddSingleItemSize() {
-        list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
+        list.add(Card.QUEEN_HEARTS);
         assertEquals(1, list.size());
         assertFalse(list.isEmpty());
     }
     
     @Test
     public void testAddSingleItemContains() {
-        list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
+        list.add(Card.QUEEN_HEARTS);
         assertTrue(list.contains(new Card(Ranks.QUEEN, Suits.HEARTS)));
     }
     
     @Test
     public void testAddSingleItemDoesntContain() {
-        list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
+        list.add(Card.QUEEN_HEARTS);
         assertFalse(list.contains(new Card(Ranks.QUEEN, Suits.CLUBS)));
     }
     
     @Test
     public void testAddTwoItemsSize() {
-        list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.JACK, Suits.CLUBS));
+        list.add(Card.THREE_DIAMONDS);
+        list.add(Card.JACK_CLUBS);
         assertEquals(2, list.size());
         assertFalse(list.isEmpty());
     }
     
     @Test
     public void testAddTwoItemsContains() {
-        list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.JACK, Suits.CLUBS));
+        list.add(Card.THREE_DIAMONDS);
+        list.add(Card.JACK_CLUBS);
         assertTrue(list.contains(new Card(Ranks.THREE, Suits.DIAMONDS)));
         assertTrue(list.contains(new Card(Ranks.JACK, Suits.CLUBS)));
     }

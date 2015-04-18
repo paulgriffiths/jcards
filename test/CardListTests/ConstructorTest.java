@@ -57,4 +57,16 @@ public class ConstructorTest {
         assertEquals("[9C,TC,JC]", list2.toString());
     }
     
+    @Test
+    public void testCardConstructorSingle() {
+        CardList list = new CardList(Card.THREE_HEARTS);
+        assertEquals("[3H]", list.toString());
+    }
+    
+    @Test
+    public void testCardConstructorMultiple() {
+        CardList list = new CardList(Card.THREE_HEARTS, Card.TEN_SPADES,
+                                     Card.JACK_CLUBS, Card.ACE_DIAMONDS);
+        assertEquals("[3H,TS,JC,AD]", list.toString());
+    }
 }

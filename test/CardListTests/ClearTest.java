@@ -32,10 +32,8 @@ public class ClearTest {
     
     @Test
     public void testClear() {
-        CardList list = new CardList();
-        list.add(new Card(Ranks.EIGHT, Suits.SPADES));
-        list.add(new Card(Ranks.NINE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.TEN, Suits.CLUBS));
+        CardList list = new CardList(Card.EIGHT_SPADES, Card.NINE_DIAMONDS,
+                                     Card.TEN_CLUBS);
         
         assertEquals("[8S,9D,TC]", list.toString());
         list.clear();

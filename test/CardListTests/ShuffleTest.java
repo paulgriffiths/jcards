@@ -33,15 +33,10 @@ public class ShuffleTest {
     
     @Test
     public void testShuffle() {
-        CardList list = new CardList();
-        list.add(new Card(Ranks.TWO, Suits.DIAMONDS));
-        list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.FOUR, Suits.DIAMONDS));
-        list.add(new Card(Ranks.FIVE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.SIX, Suits.DIAMONDS));
-        list.add(new Card(Ranks.SEVEN, Suits.DIAMONDS));
-        list.add(new Card(Ranks.EIGHT, Suits.DIAMONDS));
-        list.add(new Card(Ranks.NINE, Suits.DIAMONDS));
+        CardList list = new CardList(Card.TWO_DIAMONDS, Card.THREE_DIAMONDS,
+                                     Card.FOUR_DIAMONDS, Card.FIVE_DIAMONDS,
+                                     Card.SIX_DIAMONDS, Card.SEVEN_DIAMONDS,
+                                     Card.EIGHT_DIAMONDS, Card.NINE_DIAMONDS);
         
         assertEquals("[2D,3D,4D,5D,6D,7D,8D,9D]", list.toString());
         list.shuffle();

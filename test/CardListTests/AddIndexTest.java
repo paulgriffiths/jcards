@@ -34,45 +34,41 @@ public class AddIndexTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.TWO, Suits.CLUBS));
-        list.add(new Card(Ranks.THREE, Suits.CLUBS));
-        list.add(new Card(Ranks.FOUR, Suits.CLUBS));
-        list.add(new Card(Ranks.FIVE, Suits.CLUBS));
-        list.add(new Card(Ranks.SIX, Suits.CLUBS));
+        list = new CardList(Card.TWO_CLUBS, Card.THREE_CLUBS, Card.FOUR_CLUBS,
+                            Card.FIVE_CLUBS, Card.SIX_CLUBS);
     }
     
     @Test
     public void testAddAtBeginning() {
-        list.add(0, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(0, Card.ACE_HEARTS);
         assertEquals("[AH,2C,3C,4C,5C,6C]", list.toString());
     }
     
     @Test
     public void testAddInMiddle() {
-        list.add(2, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(2, Card.ACE_HEARTS);
         assertEquals("[2C,3C,AH,4C,5C,6C]", list.toString());
     }
     
     @Test
     public void testAddBeforeEnd() {
-        list.add(4, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(4, Card.ACE_HEARTS);
         assertEquals("[2C,3C,4C,5C,AH,6C]", list.toString());
     }
     
     @Test
     public void testAddAtEnd() {
-        list.add(5, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(5, Card.ACE_HEARTS);
         assertEquals("[2C,3C,4C,5C,6C,AH]", list.toString());
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void testAddAfterEnd() {
-        list.add(6, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(6, Card.ACE_HEARTS);
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void testAddBeforeBeginning() {
-        list.add(-1, new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(-1, Card.ACE_HEARTS);
     }
 }

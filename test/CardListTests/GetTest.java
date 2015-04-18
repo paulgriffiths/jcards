@@ -34,34 +34,31 @@ public class GetTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.TEN, Suits.CLUBS));
-        list.add(new Card(Ranks.JACK, Suits.CLUBS));
-        list.add(new Card(Ranks.QUEEN, Suits.CLUBS));
+        list = new CardList(Card.TEN_CLUBS, Card.JACK_CLUBS, Card.QUEEN_CLUBS);
     }
     
     @Test
     public void testGetAtBeginning() {
-        assertEquals(new Card(Ranks.TEN, Suits.CLUBS), list.get(0));
+        assertEquals(Card.TEN_CLUBS, list.get(0));
     }
     
     @Test
     public void testGetAtMiddle() {
-        assertEquals(new Card(Ranks.JACK, Suits.CLUBS), list.get(1));
+        assertEquals(Card.JACK_CLUBS, list.get(1));
     }
     
     @Test
     public void testGetAtEnd() {
-        assertEquals(new Card(Ranks.QUEEN, Suits.CLUBS), list.get(2));
+        assertEquals(Card.QUEEN_CLUBS, list.get(2));
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void testGetBeforeBeginning() {
-        assertEquals(new Card(Ranks.NINE, Suits.CLUBS), list.get(-1));
+        assertEquals(Card.NINE_CLUBS, list.get(-1));
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void testGetAfterEnd() {
-        assertEquals(new Card(Ranks.KING, Suits.CLUBS), list.get(3));
+        assertEquals(Card.KING_CLUBS, list.get(3));
     }
 }

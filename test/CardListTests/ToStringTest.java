@@ -44,22 +44,19 @@ public class ToStringTest {
     
     @Test
     public void testToStringOneCard() {
-        list.add(new Card(Ranks.FOUR, Suits.HEARTS));
+        list.add(Card.FOUR_HEARTS);
         assertEquals("[4H]", list.toString());
     }
     
     @Test
     public void testToStringTwoCards() {
-        list.add(new Card(Ranks.TWO, Suits.DIAMONDS));
-        list.add(new Card(Ranks.TEN, Suits.CLUBS));
+        list.add(Card.TWO_DIAMONDS, Card.TEN_CLUBS);
         assertEquals("[2D,TC]", list.toString());
     }
     
     @Test
     public void testToStringThreeCards() {
-        list.add(new Card(Ranks.FIVE, Suits.SPADES));
-        list.add(new Card(Ranks.JACK, Suits.DIAMONDS));
-        list.add(new Card(Ranks.ACE, Suits.HEARTS));
+        list.add(Card.FIVE_SPADES, Card.JACK_DIAMONDS, Card.ACE_HEARTS);
         assertEquals("[5S,JD,AH]", list.toString());
     }
 }

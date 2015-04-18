@@ -34,32 +34,29 @@ public class RemoveTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.ACE, Suits.SPADES));
-        list.add(new Card(Ranks.TWO, Suits.SPADES));
-        list.add(new Card(Ranks.THREE, Suits.SPADES));
+        list = new CardList(Card.ACE_SPADES, Card.TWO_SPADES, Card.THREE_SPADES);
     }
     
     @Test
     public void testRemoveAtBeginning() {
-        assertTrue(list.remove(new Card(Ranks.ACE, Suits.SPADES)));
+        assertTrue(list.remove(Card.ACE_SPADES));
         assertEquals("[2S,3S]", list.toString());
     }
     
     @Test
     public void testRemoveAtMiddle() {
-        assertTrue(list.remove(new Card(Ranks.TWO, Suits.SPADES)));
+        assertTrue(list.remove(Card.TWO_SPADES));
         assertEquals("[AS,3S]", list.toString());
     }
     
     @Test
     public void testRemoveAtEnd() {
-        assertTrue(list.remove(new Card(Ranks.THREE, Suits.SPADES)));
+        assertTrue(list.remove(Card.THREE_SPADES));
         assertEquals("[AS,2S]", list.toString());
     }
     
     @Test
     public void testRemoveElementNotPresent() {
-        assertFalse(list.remove(new Card(Ranks.FOUR, Suits.SPADES)));
+        assertFalse(list.remove(Card.FOUR_SPADES));
     }
 }

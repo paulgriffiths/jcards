@@ -32,15 +32,8 @@ public class AddCardListTest {
     
     @Test
     public void testAddCardList() {
-        CardList list1 = new CardList();
-        list1.add(new Card(Ranks.ACE, Suits.HEARTS));
-        list1.add(new Card(Ranks.TWO, Suits.HEARTS));
-        list1.add(new Card(Ranks.THREE, Suits.HEARTS));
-        
-        CardList list2 = new CardList();
-        list2.add(new Card(Ranks.SIX, Suits.DIAMONDS));
-        list2.add(new Card(Ranks.SEVEN, Suits.DIAMONDS));
-        list2.add(new Card(Ranks.EIGHT, Suits.DIAMONDS));
+        CardList list1 = new CardList(Card.ACE_HEARTS, Card.TWO_HEARTS, Card.THREE_HEARTS);
+        CardList list2 = new CardList(Card.SIX_DIAMONDS, Card.SEVEN_DIAMONDS, Card.EIGHT_DIAMONDS);
         
         list1.add(list2);
         assertEquals("[AH,2H,3H,6D,7D,8D]", list1.toString());

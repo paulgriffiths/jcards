@@ -35,25 +35,15 @@ public class CardCounterTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.ACE, Suits.HEARTS));
-        list.add(new Card(Ranks.ACE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.ACE, Suits.SPADES));
-        list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
-        list.add(new Card(Ranks.THREE, Suits.CLUBS));
-        list.add(new Card(Ranks.FOUR, Suits.HEARTS));
-        list.add(new Card(Ranks.SIX, Suits.HEARTS));
-        list.add(new Card(Ranks.SIX, Suits.CLUBS));
-        list.add(new Card(Ranks.SIX, Suits.DIAMONDS));
-        list.add(new Card(Ranks.SIX, Suits.SPADES));
-        list.add(new Card(Ranks.NINE, Suits.CLUBS));
-        list.add(new Card(Ranks.NINE, Suits.SPADES));
-        list.add(new Card(Ranks.JACK, Suits.CLUBS));
-        list.add(new Card(Ranks.JACK, Suits.SPADES));
-        list.add(new Card(Ranks.JACK, Suits.DIAMONDS));
-        list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
-        list.add(new Card(Ranks.KING, Suits.CLUBS));
-        
+        list = new CardList(Card.ACE_HEARTS, Card.ACE_DIAMONDS,
+                            Card.ACE_SPADES, Card.THREE_DIAMONDS,
+                            Card.THREE_CLUBS, Card.FOUR_HEARTS,
+                            Card.SIX_HEARTS, Card.SIX_CLUBS,
+                            Card.SIX_DIAMONDS, Card.SIX_SPADES,
+                            Card.NINE_CLUBS, Card.NINE_SPADES,
+                            Card.JACK_CLUBS, Card.JACK_SPADES,
+                            Card.JACK_DIAMONDS, Card.QUEEN_HEARTS,
+                            Card.KING_CLUBS);
         cc = new CardCounter(list);
     }
     
@@ -119,12 +109,9 @@ public class CardCounterTest {
     
     @Test
     public void testHasNoSingles() {
-        CardList newList = new CardList();
-        newList.add(new Card(Ranks.TWO, Suits.HEARTS));
-        newList.add(new Card(Ranks.TWO, Suits.CLUBS));
-        newList.add(new Card(Ranks.THREE, Suits.HEARTS));
-        newList.add(new Card(Ranks.THREE, Suits.CLUBS));
-        newList.add(new Card(Ranks.THREE, Suits.SPADES));
+        CardList newList = new CardList(Card.TWO_HEARTS, Card.TWO_CLUBS,
+                                        Card.THREE_HEARTS, Card.THREE_CLUBS,
+                                        Card.THREE_SPADES);
         CardCounter newCc = new CardCounter(newList);
         assertFalse(newCc.hasSingles());
     }

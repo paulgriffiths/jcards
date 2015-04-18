@@ -32,11 +32,8 @@ public class FlushTest {
     
     @Test
     public void testIsFlush() {
-        CardList list = new CardList();
-        list.add(new Card(Ranks.TWO, Suits.CLUBS));
-        list.add(new Card(Ranks.FIVE, Suits.CLUBS));
-        list.add(new Card(Ranks.EIGHT, Suits.CLUBS));
-        list.add(new Card(Ranks.KING, Suits.CLUBS));
+        CardList list = new CardList(Card.TWO_CLUBS, Card.FIVE_CLUBS,
+                                     Card.EIGHT_CLUBS, Card.KING_CLUBS);
         
         CardCounter cc = new CardCounter(list);
         assertTrue(cc.isFlush());
@@ -44,11 +41,8 @@ public class FlushTest {
     
     @Test
     public void testIsntFlush() {
-        CardList list = new CardList();
-        list.add(new Card(Ranks.TWO, Suits.SPADES));
-        list.add(new Card(Ranks.FIVE, Suits.SPADES));
-        list.add(new Card(Ranks.EIGHT, Suits.HEARTS));
-        list.add(new Card(Ranks.KING, Suits.SPADES));
+        CardList list = new CardList(Card.TWO_SPADES, Card.FIVE_SPADES,
+                                     Card.EIGHT_DIAMONDS, Card.KING_SPADES);
         
         CardCounter cc = new CardCounter(list);
         assertFalse(cc.isFlush());

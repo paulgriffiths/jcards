@@ -29,6 +29,12 @@ public final class CardList implements Iterable<Card> {
         list = new ArrayList();
     }
     
+    public CardList(final Card card, final Card... cards) {
+        this();
+        list.add(card);
+        list.addAll(Arrays.asList(cards));
+    }
+    
     public CardList(final CardList list) {
         this();
         this.list.addAll(list.list);
@@ -50,16 +56,17 @@ public final class CardList implements Iterable<Card> {
         return list.get(index);
     }
     
-    public void add(final Card card) {
-        list.add(card);
-    }
-    
     public void add(final int index, final Card card) {
         list.add(index, card);
     }
     
     public void add(final CardList list) {
         this.list.addAll(list.list);
+    }
+    
+    public void add(final Card card, Card... cards) {
+        list.add(card);
+        list.addAll(Arrays.asList(cards));
     }
     
     public boolean remove(final Card card) {

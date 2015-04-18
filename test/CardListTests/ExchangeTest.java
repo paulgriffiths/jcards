@@ -34,40 +34,37 @@ public class ExchangeTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.JACK, Suits.HEARTS));
-        list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
-        list.add(new Card(Ranks.KING, Suits.HEARTS));
+        list = new CardList(Card.JACK_HEARTS, Card.QUEEN_HEARTS, Card.KING_HEARTS);
     }
     
     @Test
     public void exchangeAtBeginning() {
-        final Card c = list.exchange(0, new Card(Ranks.FIVE, Suits.CLUBS));
-        assertEquals(new Card(Ranks.JACK, Suits.HEARTS), c);
+        final Card c = list.exchange(0, Card.FIVE_CLUBS);
+        assertEquals(Card.JACK_HEARTS, c);
         assertEquals("[5C,QH,KH]", list.toString());
     }
     
     @Test
     public void exchangeAtMiddle() {
-        final Card c = list.exchange(1, new Card(Ranks.FIVE, Suits.CLUBS));
-        assertEquals(new Card(Ranks.QUEEN, Suits.HEARTS), c);
+        final Card c = list.exchange(1, Card.FIVE_CLUBS);
+        assertEquals(Card.QUEEN_HEARTS, c);
         assertEquals("[JH,5C,KH]", list.toString());
     }
     
     @Test
     public void exchangeAtEnd() {
-        final Card c = list.exchange(2, new Card(Ranks.FIVE, Suits.CLUBS));
-        assertEquals(new Card(Ranks.KING, Suits.HEARTS), c);
+        final Card c = list.exchange(2, Card.FIVE_CLUBS);
+        assertEquals(Card.KING_HEARTS, c);
         assertEquals("[JH,QH,5C]", list.toString());
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void exchangeBeforeBeginning() {
-        final Card c = list.exchange(-1, new Card(Ranks.FIVE, Suits.CLUBS));
+        final Card c = list.exchange(-1, Card.FIVE_CLUBS);
     }
     
     @Test(expected=IndexOutOfBoundsException.class)
     public void exchangeAfterEnd() {
-        final Card c = list.exchange(3, new Card(Ranks.FIVE, Suits.CLUBS));
+        final Card c = list.exchange(3, Card.FIVE_CLUBS);
     }
 }

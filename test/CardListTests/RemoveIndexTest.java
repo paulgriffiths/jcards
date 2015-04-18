@@ -34,10 +34,7 @@ public class RemoveIndexTest {
     
     @Before
     public void setUp() {
-        list = new CardList();
-        list.add(new Card(Ranks.ACE, Suits.SPADES));
-        list.add(new Card(Ranks.TWO, Suits.SPADES));
-        list.add(new Card(Ranks.THREE, Suits.SPADES));
+        list = new CardList(Card.ACE_SPADES, Card.TWO_SPADES, Card.THREE_SPADES);
     }
     
     @Test
