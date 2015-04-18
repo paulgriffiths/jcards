@@ -22,7 +22,7 @@ import java.util.TreeSet;
  *
  * @author paul
  */
-public class RankComboCounter {
+final class RankComboCounter {
     private final TreeSet<Ranks> singles = new TreeSet<>();
     private final TreeSet<Ranks> pairs = new TreeSet<>();
     private final TreeSet<Ranks> threes = new TreeSet<>();

@@ -20,16 +20,14 @@ package net.paulgriffiths.pcards;
  *
  * @author paul
  */
-public class CardCount {
-    private final SuitCounter suitCounter = new SuitCounter();
-    private final RankCounter rankCounter = new RankCounter();
+public final class CardCounter {
+    private final SuitCounter suitCounter;
+    private final RankCounter rankCounter;
     private final RankComboCounter rankComboCounter;
     
-    public CardCount(final CardList list) {
-        for ( Card card : list ) {
-            suitCounter.countCard(card);
-            rankCounter.countCard(card);
-        }        
+    public CardCounter(final CardList list) {
+        suitCounter = new SuitCounter(list);
+        rankCounter = new RankCounter(list);
         rankComboCounter = new RankComboCounter(rankCounter);
     }
     

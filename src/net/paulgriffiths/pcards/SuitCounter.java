@@ -23,9 +23,18 @@ import java.util.TreeMap;
  *
  * @author paul
  */
-class SuitCounter {
+final class SuitCounter {
     private final Map<Suits, Integer> map = new TreeMap<>();
 
+    SuitCounter() {
+    }
+    
+    SuitCounter(final CardList list) {
+        for ( Card card : list ) {
+            countCard(card);
+        }
+    }
+    
     public void countCard(final Card card) {
         final Integer count = map.get(card.getSuit());
         map.put(card.getSuit(), count == null ? 1 : count + 1);

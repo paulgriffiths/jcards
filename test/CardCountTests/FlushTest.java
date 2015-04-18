@@ -38,7 +38,7 @@ public class FlushTest {
         list.add(new Card(Ranks.EIGHT, Suits.CLUBS));
         list.add(new Card(Ranks.KING, Suits.CLUBS));
         
-        CardCount cc = new CardCount(list);
+        CardCounter cc = new CardCounter(list);
         assertTrue(cc.isFlush());
     }
     
@@ -50,7 +50,7 @@ public class FlushTest {
         list.add(new Card(Ranks.EIGHT, Suits.HEARTS));
         list.add(new Card(Ranks.KING, Suits.SPADES));
         
-        CardCount cc = new CardCount(list);
+        CardCounter cc = new CardCounter(list);
         assertFalse(cc.isFlush());
     }
 }

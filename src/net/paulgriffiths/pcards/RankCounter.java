@@ -25,8 +25,17 @@ import java.util.TreeMap;
  *
  * @author paul
  */
-class RankCounter {
+final class RankCounter {
     private final Map<Ranks, Integer> map = new TreeMap<>();
+    
+    RankCounter() {
+    }
+    
+    RankCounter(final CardList list) {
+        for ( Card card : list ) {
+            countCard(card);
+        }
+    }
     
     public void countCard(final Card card) {
         final Integer count = map.get(card.getRank());

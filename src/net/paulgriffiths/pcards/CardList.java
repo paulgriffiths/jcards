@@ -22,7 +22,7 @@ import java.util.*;
  *
  * @author paul
  */
-public class CardList implements Iterable<Card> {
+public final class CardList implements Iterable<Card> {
     private final List<Card> list;
     
     public CardList() {

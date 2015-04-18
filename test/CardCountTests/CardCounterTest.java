@@ -26,11 +26,11 @@ import net.paulgriffiths.pcards.*;
  *
  * @author paul
  */
-public class CardCountTest {
+public class CardCounterTest {
     private CardList list;
-    private CardCount cc;
+    private CardCounter cc;
     
-    public CardCountTest() {
+    public CardCounterTest() {
     }
     
     @Before
@@ -54,7 +54,7 @@ public class CardCountTest {
         list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
         list.add(new Card(Ranks.KING, Suits.CLUBS));
         
-        cc = new CardCount(list);
+        cc = new CardCounter(list);
     }
     
     @Test
@@ -125,7 +125,7 @@ public class CardCountTest {
         newList.add(new Card(Ranks.THREE, Suits.HEARTS));
         newList.add(new Card(Ranks.THREE, Suits.CLUBS));
         newList.add(new Card(Ranks.THREE, Suits.SPADES));
-        CardCount newCc = new CardCount(newList);
+        CardCounter newCc = new CardCounter(newList);
         assertFalse(newCc.hasSingles());
     }
     
