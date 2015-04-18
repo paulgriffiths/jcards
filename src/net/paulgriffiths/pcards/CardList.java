@@ -37,6 +37,10 @@ public class CardList {
         return list.isEmpty();
     }
     
+    public Card get(final int index) {
+        return list.get(index);
+    }
+    
     public void add(final Card card) {
         list.add(card);
     }
