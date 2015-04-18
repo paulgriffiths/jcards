@@ -42,6 +42,10 @@ public class CardList {
         return list.isEmpty();
     }
     
+    public void clear() {
+        list.clear();
+    }
+    
     public Card get(final int index) {
         return list.get(index);
     }
