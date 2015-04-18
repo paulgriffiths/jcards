@@ -29,6 +29,11 @@ public class CardList {
         list = new ArrayList();
     }
     
+    public CardList(final CardList list) {
+        this();
+        this.list.addAll(list.list);
+    }
+    
     public int size() {
         return list.size();
     }
@@ -47,6 +52,10 @@ public class CardList {
     
     public void add(final int index, final Card card) {
         list.add(index, card);
+    }
+    
+    public void add(final CardList list) {
+        this.list.addAll(list.list);
     }
     
     public boolean remove(final Card card) {

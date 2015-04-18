@@ -25,36 +25,25 @@ import net.paulgriffiths.pcards.*;
  *
  * @author paul
  */
-public class ConstructorTest {
+public class AddCardListTest {
     
-    public ConstructorTest() {
+    public AddCardListTest() {
     }
     
     @Test
-    public void testDefaultConstructorYieldsEmptyList() {
-        CardList list = new CardList();
-        assertEquals(0, list.size());
-        assertTrue(list.isEmpty());
-    }
-    
-    @Test
-    public void testCopyConstructor() {
+    public void testAddCardList() {
         CardList list1 = new CardList();
-        list1.add(new Card(Ranks.NINE, Suits.CLUBS));
-        list1.add(new Card(Ranks.TEN, Suits.CLUBS));
-        list1.add(new Card(Ranks.JACK, Suits.CLUBS));
+        list1.add(new Card(Ranks.ACE, Suits.HEARTS));
+        list1.add(new Card(Ranks.TWO, Suits.HEARTS));
+        list1.add(new Card(Ranks.THREE, Suits.HEARTS));
         
-        //  Test list is copied
+        CardList list2 = new CardList();
+        list2.add(new Card(Ranks.SIX, Suits.DIAMONDS));
+        list2.add(new Card(Ranks.SEVEN, Suits.DIAMONDS));
+        list2.add(new Card(Ranks.EIGHT, Suits.DIAMONDS));
         
-        CardList list2 = new CardList(list1);
-        assertEquals("[9C,TC,JC]", list1.toString());
-        assertEquals("[9C,TC,JC]", list2.toString());
-        
-        //  Test that an actual new list was created
-        
-        list1.exchange(1, new Card(Ranks.THREE, Suits.HEARTS));
-        assertEquals("[9C,3H,JC]", list1.toString());
-        assertEquals("[9C,TC,JC]", list2.toString());
+        list1.add(list2);
+        assertEquals("[AH,2H,3H,6D,7D,8D]", list1.toString());
     }
     
 }
