@@ -35,6 +35,7 @@ public class AddTest {
         CardList list = new CardList();
         list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
         assertEquals(1, list.size());
+        assertFalse(list.isEmpty());
     }
     
     @Test
@@ -61,6 +62,7 @@ public class AddTest {
         list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
         list.add(new Card(Ranks.JACK, Suits.CLUBS));
         assertEquals(2, list.size());
+        assertFalse(list.isEmpty());
     }
     
     @Test
