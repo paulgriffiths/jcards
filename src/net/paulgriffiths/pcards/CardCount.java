@@ -16,26 +16,28 @@
  */
 package net.paulgriffiths.pcards;
 
+import java.util.*;
+
 /**
  *
  * @author paul
  */
 public class CardCount {
-    private final int[] suitIndexCount;
     private final int[] rankValueCount;
     private final int[] rankComboCount;
     private int distinctRankCount;
-    private int distinctSuitCount;
     private Ranks highestSingleRank = null;
     private Ranks lowestSingleRank = null;
+    private final SuitCounter suitCounter;
     
     public CardCount(final CardList list) {
-        suitIndexCount = new int[Suits.highestIndex() + 1];
         rankValueCount = new int[Ranks.highestValue() + 1];
         rankComboCount = new int[list.size()];
+        suitCounter = new SuitCounter();
         
         for ( Card card : list ) {
-            incrementRankAndSuitCounts(card);
+            incrementRankCounts(card);
+            suitCounter.countCard(card);
         }
         
         for ( Ranks rank : Ranks.values() ) {
@@ -49,16 +51,9 @@ public class CardCount {
                 }
             }
         }
-        
-        for ( Suits suit : Suits.values() ) {
-            if ( isSuitPresent(suit) ) {
-                distinctSuitCount += 1;
-            }
-        }
     }
     
-    private void incrementRankAndSuitCounts(final Card card) {
-        suitIndexCount[card.getSuit().getIndex()] += 1;
+    private void incrementRankCounts(final Card card) {
         rankValueCount[card.getRank().getValue()] += 1;
     }
     
@@ -89,7 +84,7 @@ public class CardCount {
     }
     
     private boolean isSuitPresent(final Suits suit) {
-        return suitIndexCount[suit.getIndex()] > 0;
+        return suitCounter.hasSuit(suit);
     }
     
     public int number(final Ranks rank) {
@@ -97,7 +92,7 @@ public class CardCount {
     }
     
     public int number(final Suits suit) {
-        return suitIndexCount[suit.getIndex()];
+        return suitCounter.getCount(suit);
     }
     
     public int numberHigh() {
@@ -121,11 +116,12 @@ public class CardCount {
     }
     
     public int numberSuits() {
-        return distinctSuitCount;
+        //return distinctSuitCount;
+        return suitCounter.size();
     }
     
     public boolean isFlush() {
-        return distinctSuitCount == 1;
+        return suitCounter.size() == 1;
     }
     
     public boolean hasSingles() {
@@ -138,5 +134,39 @@ public class CardCount {
     
     public Ranks lowestSingleRank() {
         return lowestSingleRank;
+    }
+}
+
+class SuitCounter {
+    private final Map<Suits, Integer> map;
+    
+    SuitCounter() {
+        map = new TreeMap<>();
+    }
+    
+    public void countCard(final Card card) {
+        if ( map.containsKey(card.getSuit()) ) {
+            map.put(card.getSuit(), map.get(card.getSuit()) + 1);
+        }
+        else {
+            map.put(card.getSuit(), 1);
+        }
+    }
+    
+    public int size() {
+        return map.size();
+    }
+    
+    public boolean hasSuit(final Suits suit) {
+        return map.containsKey(suit);
+    }
+    
+    public int getCount(final Suits suit) {
+        if ( map.containsKey(suit) ) {
+            return map.get(suit);
+        }
+        else {
+            return 0;
+        }
     }
 }
