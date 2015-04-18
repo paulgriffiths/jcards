@@ -17,6 +17,7 @@
 package CardListTests;
 
 import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.*;
 
 import net.paulgriffiths.pcards.*;
@@ -26,13 +27,18 @@ import net.paulgriffiths.pcards.*;
  * @author paul
  */
 public class AddTest {
+    private CardList list;
     
     public AddTest() {
     }
     
+    @Before
+    public void setUp() {
+        list = new CardList();
+    }
+    
     @Test
     public void testAddSingleItemSize() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
         assertEquals(1, list.size());
         assertFalse(list.isEmpty());
@@ -40,25 +46,18 @@ public class AddTest {
     
     @Test
     public void testAddSingleItemContains() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
-        
-        Card c = new Card(Ranks.QUEEN, Suits.HEARTS);
-        assertTrue(list.contains(c));
+        assertTrue(list.contains(new Card(Ranks.QUEEN, Suits.HEARTS)));
     }
     
     @Test
     public void testAddSingleItemDoesntContain() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.QUEEN, Suits.HEARTS));
-        
-        Card c = new Card(Ranks.QUEEN, Suits.CLUBS);
-        assertFalse(list.contains(c));
+        assertFalse(list.contains(new Card(Ranks.QUEEN, Suits.CLUBS)));
     }
     
     @Test
     public void testAddTwoItemsSize() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
         list.add(new Card(Ranks.JACK, Suits.CLUBS));
         assertEquals(2, list.size());
@@ -67,14 +66,9 @@ public class AddTest {
     
     @Test
     public void testAddTwoItemsContains() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.THREE, Suits.DIAMONDS));
         list.add(new Card(Ranks.JACK, Suits.CLUBS));
-        
-        Card c = new Card(Ranks.THREE, Suits.DIAMONDS);
-        assertTrue(list.contains(c));
-        
-        c = new Card(Ranks.JACK, Suits.CLUBS);
-        assertTrue(list.contains(c));
+        assertTrue(list.contains(new Card(Ranks.THREE, Suits.DIAMONDS)));
+        assertTrue(list.contains(new Card(Ranks.JACK, Suits.CLUBS)));
     }
 }

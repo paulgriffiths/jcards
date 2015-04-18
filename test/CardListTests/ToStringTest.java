@@ -17,6 +17,7 @@
 package CardListTests;
 
 import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.*;
 
 import net.paulgriffiths.pcards.*;
@@ -26,26 +27,29 @@ import net.paulgriffiths.pcards.*;
  * @author paul
  */
 public class ToStringTest {
+    private CardList list;
     
     public ToStringTest() {
     }
     
+    @Before
+    public void setUp() {
+        list = new CardList();
+    }
+    
     @Test
     public void testToStringEmpty() {
-        CardList list = new CardList();
         assertEquals("[]", list.toString());
     }
     
     @Test
     public void testToStringOneCard() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.FOUR, Suits.HEARTS));
         assertEquals("[4H]", list.toString());
     }
     
     @Test
     public void testToStringTwoCards() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.TWO, Suits.DIAMONDS));
         list.add(new Card(Ranks.TEN, Suits.CLUBS));
         assertEquals("[2D,TC]", list.toString());
@@ -53,7 +57,6 @@ public class ToStringTest {
     
     @Test
     public void testToStringThreeCards() {
-        CardList list = new CardList();
         list.add(new Card(Ranks.FIVE, Suits.SPADES));
         list.add(new Card(Ranks.JACK, Suits.DIAMONDS));
         list.add(new Card(Ranks.ACE, Suits.HEARTS));
