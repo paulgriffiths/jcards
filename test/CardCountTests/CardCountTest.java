@@ -131,11 +131,11 @@ public class CardCountTest {
     
     @Test
     public void testHighRank() {
-        assertEquals(Ranks.KING, cc.highRank());
+        assertEquals(Ranks.KING, cc.highestSingleRank());
     }
     
     @Test
     public void testLowRank() {
-        assertEquals(Ranks.FOUR, cc.lowRank());
+        assertEquals(Ranks.FOUR, cc.lowestSingleRank());
     }
 }

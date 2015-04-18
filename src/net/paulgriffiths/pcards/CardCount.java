@@ -24,10 +24,10 @@ public class CardCount {
     private final int[] suitIndexCount;
     private final int[] rankValueCount;
     private final int[] rankComboCount;
-    private int numberDistinctRanks;
-    private int numberDistinctSuits;
-    private int highestSingleRankValue = -1;
-    private int lowestSingleRankValue = -1;
+    private int distinctRankCount;
+    private int distinctSuitCount;
+    private Ranks highestSingleRank = null;
+    private Ranks lowestSingleRank = null;
     
     public CardCount(final CardList list) {
         suitIndexCount = new int[Suits.highestIndex() + 1];
@@ -35,54 +35,61 @@ public class CardCount {
         rankComboCount = new int[list.size()];
         
         for ( Card card : list ) {
-            incrementRankAndSuitCount(card);
+            incrementRankAndSuitCounts(card);
         }
         
         for ( Ranks rank : Ranks.values() ) {
-            incrementComboCount(rank.getValue());
-            
-            if ( isRankValuePresent(rank.getValue()) ) {
-                numberDistinctRanks += 1;
+            if ( isRankPresent(rank) ) {
+                distinctRankCount += 1;
+                incrementComboCount(rank);
                 
-                if ( isRankValueSingle(rank.getValue()) ) {
-                    setHighestSingleRankValue(rank.getValue());
-                    setLowestSingleRankValueIfNotSet(rank.getValue());
+                if ( isRankSingle(rank) ) {
+                    updateHighestSingleRank(rank);
+                    updateLowestSingleRank(rank);
                 }
             }
         }
         
-        for ( int n : suitIndexCount ) {
-            if ( n > 0 ) {
-                numberDistinctSuits +=1 ;
+        for ( Suits suit : Suits.values() ) {
+            if ( isSuitPresent(suit) ) {
+                distinctSuitCount += 1;
             }
         }
     }
     
-    private void incrementRankAndSuitCount(final Card card) {
+    private void incrementRankAndSuitCounts(final Card card) {
         suitIndexCount[card.getSuit().getIndex()] += 1;
         rankValueCount[card.getRank().getValue()] += 1;
     }
     
-    private void incrementComboCount(final int value) {
-        rankComboCount[rankValueCount[value]] += 1;
+    private void incrementComboCount(final Ranks rank) {
+        rankComboCount[rankValueCount[rank.getValue()]] += 1;
     }
     
-    private boolean isRankValueSingle(final int value) {
-        return rankValueCount[value] == 1;
+    private boolean isRankSingle(final Ranks rank) {
+        return rankValueCount[rank.getValue()] == 1;
     }
     
-    private boolean isRankValuePresent(final int value) {
-        return rankValueCount[value] > 0;
+    private boolean isRankPresent(final Ranks rank) {
+        return rankValueCount[rank.getValue()] > 0;
     }
     
-    private void setHighestSingleRankValue(final int value) {
-        highestSingleRankValue = value;
-    }
-    
-    private void setLowestSingleRankValueIfNotSet(final int value) {
-        if ( lowestSingleRankValue == - 1 ) {
-            lowestSingleRankValue = value;
+    private void updateHighestSingleRank(final Ranks rank) {
+        if ( highestSingleRank == null ||
+             highestSingleRank.compareTo(rank) < 0 ) {
+            highestSingleRank = rank;
         }
+    }
+    
+    private void updateLowestSingleRank(final Ranks rank) {
+        if ( lowestSingleRank == null ||
+             lowestSingleRank.compareTo(rank) > 0 ) {
+            lowestSingleRank = rank;
+        }
+    }
+    
+    private boolean isSuitPresent(final Suits suit) {
+        return suitIndexCount[suit.getIndex()] > 0;
     }
     
     public int number(final Ranks rank) {
@@ -110,26 +117,26 @@ public class CardCount {
     }
     
     public int numberRanks() {
-        return numberDistinctRanks;
+        return distinctRankCount;
     }
     
     public int numberSuits() {
-        return numberDistinctSuits;
+        return distinctSuitCount;
     }
     
     public boolean isFlush() {
-        return numberDistinctSuits == 1;
+        return distinctSuitCount == 1;
     }
     
     public boolean hasSingles() {
-        return highestSingleRankValue != -1;
+        return highestSingleRank != null;
     }
     
-    public Ranks highRank() {
-        return Ranks.getFromValue(highestSingleRankValue);
+    public Ranks highestSingleRank() {
+        return highestSingleRank;
     }
     
-    public Ranks lowRank() {
-        return Ranks.getFromValue(lowestSingleRankValue);
+    public Ranks lowestSingleRank() {
+        return lowestSingleRank;
     }
 }
