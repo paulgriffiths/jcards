@@ -16,157 +16,69 @@
  */
 package net.paulgriffiths.pcards;
 
-import java.util.*;
-
 /**
  *
  * @author paul
  */
 public class CardCount {
-    private final int[] rankValueCount;
-    private final int[] rankComboCount;
-    private int distinctRankCount;
-    private Ranks highestSingleRank = null;
-    private Ranks lowestSingleRank = null;
-    private final SuitCounter suitCounter;
+    private final SuitCounter suitCounter = new SuitCounter();
+    private final RankCounter rankCounter = new RankCounter();
+    private final RankComboCounter rankComboCounter;
     
     public CardCount(final CardList list) {
-        rankValueCount = new int[Ranks.highestValue() + 1];
-        rankComboCount = new int[list.size()];
-        suitCounter = new SuitCounter();
-        
         for ( Card card : list ) {
-            incrementRankCounts(card);
             suitCounter.countCard(card);
-        }
-        
-        for ( Ranks rank : Ranks.values() ) {
-            if ( isRankPresent(rank) ) {
-                distinctRankCount += 1;
-                incrementComboCount(rank);
-                
-                if ( isRankSingle(rank) ) {
-                    updateHighestSingleRank(rank);
-                    updateLowestSingleRank(rank);
-                }
-            }
-        }
-    }
-    
-    private void incrementRankCounts(final Card card) {
-        rankValueCount[card.getRank().getValue()] += 1;
-    }
-    
-    private void incrementComboCount(final Ranks rank) {
-        rankComboCount[rankValueCount[rank.getValue()]] += 1;
-    }
-    
-    private boolean isRankSingle(final Ranks rank) {
-        return rankValueCount[rank.getValue()] == 1;
-    }
-    
-    private boolean isRankPresent(final Ranks rank) {
-        return rankValueCount[rank.getValue()] > 0;
-    }
-    
-    private void updateHighestSingleRank(final Ranks rank) {
-        if ( highestSingleRank == null ||
-             highestSingleRank.compareTo(rank) < 0 ) {
-            highestSingleRank = rank;
-        }
-    }
-    
-    private void updateLowestSingleRank(final Ranks rank) {
-        if ( lowestSingleRank == null ||
-             lowestSingleRank.compareTo(rank) > 0 ) {
-            lowestSingleRank = rank;
-        }
-    }
-    
-    private boolean isSuitPresent(final Suits suit) {
-        return suitCounter.hasSuit(suit);
+            rankCounter.countCard(card);
+        }        
+        rankComboCounter = new RankComboCounter(rankCounter);
     }
     
     public int number(final Ranks rank) {
-        return rankValueCount[rank.getValue()];
+        return rankCounter.getCount(rank);
     }
     
     public int number(final Suits suit) {
         return suitCounter.getCount(suit);
     }
     
-    public int numberHigh() {
-        return rankComboCount[1];
-    }
-    
-    public int numberPair() {
-        return rankComboCount[2];
-    }
-    
-    public int numberThree() {
-        return rankComboCount[3];
-    }
-    
-    public int numberFour() {
-        return rankComboCount[4];
-    }
-    
     public int numberRanks() {
-        return distinctRankCount;
+        return rankCounter.numRanks();
     }
     
     public int numberSuits() {
-        //return distinctSuitCount;
-        return suitCounter.size();
+        return suitCounter.numSuits();
     }
     
     public boolean isFlush() {
-        return suitCounter.size() == 1;
+        return numberSuits() == 1;
+    }
+    
+    public int numberSingles() {
+        return rankComboCounter.numberSingles();
+    }
+    
+    public int numberPairs() {
+        return rankComboCounter.numberPairs();
+    }
+    
+    public int numberThrees() {
+        return rankComboCounter.numberThrees();
+    }
+    
+    public int numberFours() {
+        return rankComboCounter.numberFours();
     }
     
     public boolean hasSingles() {
-        return highestSingleRank != null;
+        return numberSingles() != 0;
     }
     
     public Ranks highestSingleRank() {
-        return highestSingleRank;
+        return rankComboCounter.highestSingle();
     }
     
     public Ranks lowestSingleRank() {
-        return lowestSingleRank;
+        return rankComboCounter.lowestSingle();
     }
 }
 
-class SuitCounter {
-    private final Map<Suits, Integer> map;
-    
-    SuitCounter() {
-        map = new TreeMap<>();
-    }
-    
-    public void countCard(final Card card) {
-        if ( map.containsKey(card.getSuit()) ) {
-            map.put(card.getSuit(), map.get(card.getSuit()) + 1);
-        }
-        else {
-            map.put(card.getSuit(), 1);
-        }
-    }
-    
-    public int size() {
-        return map.size();
-    }
-    
-    public boolean hasSuit(final Suits suit) {
-        return map.containsKey(suit);
-    }
-    
-    public int getCount(final Suits suit) {
-        if ( map.containsKey(suit) ) {
-            return map.get(suit);
-        }
-        else {
-            return 0;
-        }
-    }
-}

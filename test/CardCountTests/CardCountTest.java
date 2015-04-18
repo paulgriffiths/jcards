@@ -84,22 +84,22 @@ public class CardCountTest {
     
     @Test
     public void testNumberHigh() {
-        assertEquals(3, cc.numberHigh());
+        assertEquals(3, cc.numberSingles());
     }
     
     @Test
     public void testNumberPair() {
-        assertEquals(2, cc.numberPair());
+        assertEquals(2, cc.numberPairs());
     }
     
     @Test
     public void testNumberThree() {
-        assertEquals(2, cc.numberThree());
+        assertEquals(2, cc.numberThrees());
     }
     
     @Test
     public void testNumberFour() {
-        assertEquals(1, cc.numberFour());
+        assertEquals(1, cc.numberFours());
     }
     
     @Test
