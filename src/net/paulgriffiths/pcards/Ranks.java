@@ -40,6 +40,19 @@ public enum Ranks {
     private final int value;
     private final int index;
     
+    public static Ranks getFromValue(final int value) {
+        return values()[value - 2];
+    }
+    
+    public static int lowestValue() {
+        return 2;
+    }
+    
+    public static int highestValue() {
+        return 14;
+    }
+
+    
     Ranks(final String longName, final String shortName,
           final int value, final int index) {
         this.longName = longName;

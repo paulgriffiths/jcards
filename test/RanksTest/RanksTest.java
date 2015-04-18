@@ -64,4 +64,21 @@ public class RanksTest {
         assertTrue(Ranks.KING.compareTo(Ranks.QUEEN) > 0);
     }
     
+    @Test
+    public void testRankFromValue() {
+        assertEquals(Ranks.TWO, Ranks.getFromValue(Ranks.TWO.getValue()));
+        assertEquals(Ranks.THREE, Ranks.getFromValue(Ranks.THREE.getValue()));
+        assertEquals(Ranks.FOUR, Ranks.getFromValue(Ranks.FOUR.getValue()));
+        assertEquals(Ranks.FIVE, Ranks.getFromValue(Ranks.FIVE.getValue()));
+        assertEquals(Ranks.SIX, Ranks.getFromValue(Ranks.SIX.getValue()));
+        assertEquals(Ranks.SEVEN, Ranks.getFromValue(Ranks.SEVEN.getValue()));
+        assertEquals(Ranks.EIGHT, Ranks.getFromValue(Ranks.EIGHT.getValue()));
+        assertEquals(Ranks.NINE, Ranks.getFromValue(Ranks.NINE.getValue()));
+        assertEquals(Ranks.TEN, Ranks.getFromValue(Ranks.TEN.getValue()));
+        assertEquals(Ranks.JACK, Ranks.getFromValue(Ranks.JACK.getValue()));
+        assertEquals(Ranks.QUEEN, Ranks.getFromValue(Ranks.QUEEN.getValue()));
+        assertEquals(Ranks.KING, Ranks.getFromValue(Ranks.KING.getValue()));
+        assertEquals(Ranks.ACE, Ranks.getFromValue(Ranks.ACE.getValue()));
+    }
+    
 }

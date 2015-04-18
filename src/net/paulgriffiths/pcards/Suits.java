@@ -30,6 +30,14 @@ public enum Suits {
     private final String longName;
     private final String shortName;
     private final int index;
+    
+    public static int lowestIndex() {
+        return 0;
+    }
+    
+    public static int highestIndex() {
+        return 3;
+    }
 
     Suits(final String longName, final String shortName, final int index) {
         this.longName = longName;

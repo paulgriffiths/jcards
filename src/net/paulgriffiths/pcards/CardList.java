@@ -22,7 +22,7 @@ import java.util.*;
  *
  * @author paul
  */
-public class CardList {
+public class CardList implements Iterable<Card> {
     private final List<Card> list;
     
     public CardList() {
@@ -80,6 +80,11 @@ public class CardList {
     
     public boolean contains(final Card card) {
         return list.contains(card);
+    }
+    
+    @Override
+    public Iterator<Card> iterator() {
+        return list.iterator();
     }
     
     @Override
