@@ -31,6 +31,13 @@ public class StraightTest {
     }
     
     @Test
+    public void testEmptyList() {
+        CardList list = new CardList();
+        CardCounter cc = new CardCounter(list);
+        assertFalse(cc.isStraight());
+    }
+    
+    @Test
     public void testOneCardStraight() {
         CardList list = new CardList(Card.NINE_DIAMONDS);
         CardCounter cc = new CardCounter(list);

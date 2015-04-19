@@ -25,34 +25,20 @@ import net.paulgriffiths.pcards.*;
  *
  * @author paul
  */
-public class FlushTest {
+public class IsEmptyTest {
     
-    public FlushTest() {
+    public IsEmptyTest() {
     }
     
     @Test
-    public void testEmptyList() {
-        CardList list = new CardList();
-        
-        CardCounter cc = new CardCounter(list);
-        assertFalse(cc.isFlush());
+    public void testIsEmptyTrue() {
+        CardCounter cc = new CardCounter(new CardList());
+        assertTrue(cc.isEmpty());
     }
     
     @Test
-    public void testIsFlush() {
-        CardList list = new CardList(Card.TWO_CLUBS, Card.FIVE_CLUBS,
-                                     Card.EIGHT_CLUBS, Card.KING_CLUBS);
-        
-        CardCounter cc = new CardCounter(list);
-        assertTrue(cc.isFlush());
-    }
-    
-    @Test
-    public void testIsntFlush() {
-        CardList list = new CardList(Card.TWO_SPADES, Card.FIVE_SPADES,
-                                     Card.EIGHT_DIAMONDS, Card.KING_SPADES);
-        
-        CardCounter cc = new CardCounter(list);
-        assertFalse(cc.isFlush());
+    public void testIsEmptyFalse() {
+        CardCounter cc = new CardCounter(new CardList(Card.ACE_SPADES));
+        assertFalse(cc.isEmpty());
     }
 }

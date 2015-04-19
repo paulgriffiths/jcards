@@ -16,6 +16,8 @@
  */
 package net.paulgriffiths.pcards;
 
+import java.util.*;
+
 /**
  *
  * @author paul
@@ -31,6 +33,22 @@ public final class CardCounter {
         suitCounter = new SuitCounter(list);
         rankCounter = new RankCounter(list);
         rankComboCounter = new RankComboCounter(rankCounter);
+    }
+    
+    public boolean isEmpty() {
+        return numberCards() == 0;
+    }
+    
+    public int numberCards() {
+        return numberCards;
+    }
+    
+    public boolean hasRank(final Ranks rank) {
+        return number(rank) > 0;
+    }
+    
+    public boolean hasSuit(final Suits suit) {
+        return number(suit) > 0;
     }
     
     public int number(final Ranks rank) {
@@ -70,7 +88,12 @@ public final class CardCounter {
     }
     
     public int rankRangeByCount(final int count) {
-        return rankComboCounter.rangeByCount(count);
+        try {
+            return rankComboCounter.rangeByCount(count);
+        }
+        catch (NullPointerException e) {
+            throw new NoSuchElementException("Element was " + count);
+        }
     }
     
     public long rankScoreByCount(final int count) {
@@ -86,7 +109,7 @@ public final class CardCounter {
     }
     
     private boolean isAllSingles() {
-        return hasRankCount(1) && numberRankByCount(1) == numberCards;
+        return !isEmpty() && numberRankByCount(1) == numberCards;
     }
     
     private boolean areSinglesStraight() {
