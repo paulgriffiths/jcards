@@ -16,8 +16,6 @@
  */
 package net.paulgriffiths.pcards;
 
-import java.util.*;
-
 /**
  *
  * @author paul
@@ -88,12 +86,7 @@ public final class CardCounter {
     }
     
     public int rankRangeByCount(final int count) {
-        try {
-            return rankComboCounter.rangeByCount(count);
-        }
-        catch (NullPointerException e) {
-            throw new NoSuchElementException("Element was " + count);
-        }
+        return rankComboCounter.rangeByCount(count);
     }
     
     public long rankScoreByCount(final int count) {

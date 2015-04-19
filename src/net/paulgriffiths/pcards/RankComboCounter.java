@@ -19,6 +19,7 @@ package net.paulgriffiths.pcards;
 import java.util.TreeSet;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -64,7 +65,12 @@ final class RankComboCounter {
     }
     
     public int rangeByCount(final int count) {
-        return highestByCount(count).valueDifference(lowestByCount(count));
+        try {
+            return highestByCount(count).valueDifference(lowestByCount(count));
+        }
+        catch (NullPointerException e) {
+            throw new NoSuchElementException("No such count: " + count);
+        }
     }
     
     public long scoreByCount(final int count) {
