@@ -21,63 +21,100 @@ package net.paulgriffiths.pcards;
  * @author paul
  */
 public final class PokerHandEvaluator {
-    private final PokerHand hand;
     private final CardCounter counter;
     private final PokerHandScore score;
     
     public PokerHandEvaluator(final PokerHand hand) {
-        this.hand = hand;
         this.counter = new CardCounter(hand.getCardList());
         this.score = evaluate();
     }
     
     private PokerHandScore evaluate() {
+        final PokerHands type = calculateHandType();
+        
+        switch ( type ) {
+            case ROYAL_FLUSH:
+                return new PokerHandScore(type);
+                
+            case STRAIGHT_FLUSH:
+                return new PokerHandScore(type,
+                        counter.lowestRankByCount(1).getValue());
+                
+            case FOUR:
+                return new PokerHandScore(type,
+                        counter.highestRankByCount(4).getValue(),
+                        counter.highestRankByCount(1).getValue());
+                
+            case FULL_HOUSE:
+                return new PokerHandScore(type,
+                        counter.highestRankByCount(3).getValue(),
+                        counter.highestRankByCount(2).getValue());
+                
+            case FLUSH:
+                return new PokerHandScore(type,
+                        counter.rankScoreByCount(1));
+                
+            case STRAIGHT:
+                return new PokerHandScore(type,
+                        counter.lowestRankByCount(1).getValue());
+                
+            case THREE:
+                return new PokerHandScore(type,
+                        counter.highestRankByCount(3).getValue(),
+                        counter.rankScoreByCount(1));
+                
+            case TWO_PAIR:
+                return new PokerHandScore(type,
+                        counter.highestRankByCount(2).getValue(),
+                        counter.lowestRankByCount(2).getValue(),
+                        counter.highestRankByCount(1).getValue());
+                
+            case PAIR:
+                return new PokerHandScore(type,
+                        counter.highestRankByCount(2).getValue(),
+                        counter.rankScoreByCount(1));
+                
+            case HIGH:
+                return new PokerHandScore(type, counter.rankScoreByCount(1));
+                
+            default:
+                throw new UnsupportedOperationException("Poker hand evaluation failed");
+        }
+    }
+    
+    private PokerHands calculateHandType() {
         if ( counter.isFlush() && counter.isStraight() ) {
             if ( counter.lowestRankByCount(1) == Ranks.TEN ) {
-                return new PokerHandScore(PokerHands.ROYAL_FLUSH);
+                return PokerHands.ROYAL_FLUSH;
             }
             else {
-                return new PokerHandScore(PokerHands.STRAIGHT_FLUSH,
-                                          counter.lowestRankByCount(1).getValue());
+                return PokerHands.STRAIGHT_FLUSH;
             }
         }
         else if ( counter.numberRankByCount(4) == 1) {
-            return new PokerHandScore(PokerHands.FOUR,
-                                      counter.highestRankByCount(4).getValue(),
-                                      counter.highestRankByCount(1).getValue());
+            return PokerHands.FOUR;
         }
         else if ( counter.numberRankByCount(3) == 1 &&
                   counter.numberRankByCount(2) == 1 ) {
-            return new PokerHandScore(PokerHands.FULL_HOUSE,
-                                      counter.highestRankByCount(3).getValue(),
-                                      counter.highestRankByCount(2).getValue());
+            return PokerHands.FULL_HOUSE;
         }
         else if ( counter.isFlush() ) {
-            return new PokerHandScore(PokerHands.FLUSH,
-                                      counter.rankScoreByCount(1));
+            return PokerHands.FLUSH;
         }
         else if ( counter.isStraight() ) {
-            return new PokerHandScore(PokerHands.STRAIGHT,
-                                      counter.lowestRankByCount(1).getValue());
+            return PokerHands.STRAIGHT;
         }
         else if ( counter.numberRankByCount(3) == 1 ) {
-            return new PokerHandScore(PokerHands.THREE,
-                                      counter.highestRankByCount(3).getValue(),
-                                      counter.rankScoreByCount(1));
+            return PokerHands.THREE;
         }
         else if ( counter.numberRankByCount(2) == 2 ) {
-            return new PokerHandScore(PokerHands.TWO_PAIR,
-                                      counter.highestRankByCount(2).getValue(),
-                                      counter.lowestRankByCount(2).getValue(),
-                                      counter.highestRankByCount(1).getValue());
+            return PokerHands.TWO_PAIR;
         }
         else if ( counter.numberRankByCount(2) == 1 ) {
-            return new PokerHandScore(PokerHands.PAIR,
-                                      counter.highestRankByCount(2).getValue(),
-                                      counter.rankScoreByCount(1));
+            return PokerHands.PAIR;
         }
         else if ( counter.numberRankByCount(1) == 5 ) {
-            return new PokerHandScore(PokerHands.HIGH, counter.rankScoreByCount(1));
+            return PokerHands.HIGH;
         }
         else {
             throw new UnsupportedOperationException("Poker hand evaluation failed");
