@@ -31,22 +31,8 @@ public final class PokerHandEvaluator {
         this.handType = evaluate();
     }
     
-    private boolean checkStraight() {
-        if ( counter.numberSingles() == 5 ) {
-            if ( counter.singlesRange() == 4 ) {
-                return true;
-            }
-            else if ( counter.highestSingleRank() == Ranks.ACE &&
-                      counter.lowestSingleRank() == Ranks.TWO &&
-                      counter.secondHighestSingleRank() == Ranks.FIVE ) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
     private PokerHands evaluate() {
-        if ( counter.isFlush() && checkStraight() ) {
+        if ( counter.isFlush() && counter.isStraight() ) {
             if ( counter.lowestSingleRank() == Ranks.TEN ) {
                 return PokerHands.ROYAL_FLUSH;
             }
@@ -63,7 +49,7 @@ public final class PokerHandEvaluator {
         else if ( counter.isFlush() ) {
             return PokerHands.FLUSH;
         }
-        else if ( checkStraight() ) {
+        else if ( counter.isStraight() ) {
             return PokerHands.STRAIGHT;
         }
         else if ( counter.numberThrees() == 1 ) {

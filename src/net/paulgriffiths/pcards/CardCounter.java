@@ -24,8 +24,10 @@ public final class CardCounter {
     private final SuitCounter suitCounter;
     private final RankCounter rankCounter;
     private final RankComboCounter rankComboCounter;
+    private final int numberCards;
     
     public CardCounter(final CardList list) {
+        numberCards = list.size();
         suitCounter = new SuitCounter(list);
         rankCounter = new RankCounter(list);
         rankComboCounter = new RankComboCounter(rankCounter);
@@ -51,7 +53,34 @@ public final class CardCounter {
         return numberSuits() == 1;
     }
     
-    public int singlesRange() {
+    public boolean isStraight() {
+        return isAllSingles() && areSinglesStraight();
+    }
+    
+    private boolean areSinglesStraight() {
+        return areSinglesNonWheelStraight() || areSinglesWheelStraight();
+    }
+    
+    private boolean areSinglesNonWheelStraight() {
+        return hasSingles() &&
+               ( (numberSingles() == 1) ||
+                 (singlesRange() == numberSingles() - 1) );
+    }
+    
+    private boolean areSinglesWheelStraight() {
+        return hasSingles() &&
+               ( (numberSingles() == 1 ) ||
+                 (highestSingleRank() == Ranks.ACE &&
+                  lowestSingleRank() == Ranks.TWO &&
+                  (secondHighestSingleRank().valueDifference(lowestSingleRank()) ==
+                   numberSingles() - 2)) );
+    }
+    
+    private boolean isAllSingles() {
+        return hasSingles() && numberSingles() == numberCards;
+    }
+    
+    private int singlesRange() {
         return rankComboCounter.singlesRange();
     }
     
@@ -72,14 +101,14 @@ public final class CardCounter {
     }
     
     public boolean hasSingles() {
-        return numberSingles() != 0;
+        return numberSingles() > 0;
     }
     
     public Ranks highestSingleRank() {
         return rankComboCounter.highestSingle();
     }
     
-    public Ranks secondHighestSingleRank() {
+    private Ranks secondHighestSingleRank() {
         return rankComboCounter.secondHighestSingle();
     }
     
