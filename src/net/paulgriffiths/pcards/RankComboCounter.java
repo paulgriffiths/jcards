@@ -37,11 +37,11 @@ final class RankComboCounter {
     }
     
     public boolean hasCount(final int count) {
-        return countSet(count) == null ? false : true;
+        return countSet(count) != null;
     }
     
     private TreeSet<Ranks> countSet(final int count) {
-        return ranksMap.get(count) == null ? null : ranksMap.get(count);
+        return ranksMap.get(count);
     }
     
     public int numberByCount(final int count) {

@@ -74,22 +74,22 @@ public class CardCounterTest {
     
     @Test
     public void testNumberHigh() {
-        assertEquals(3, cc.numberSingles());
+        assertEquals(3, cc.numberRankByCount(1));
     }
     
     @Test
     public void testNumberPair() {
-        assertEquals(2, cc.numberPairs());
+        assertEquals(2, cc.numberRankByCount(2));
     }
     
     @Test
     public void testNumberThree() {
-        assertEquals(2, cc.numberThrees());
+        assertEquals(2, cc.numberRankByCount(3));
     }
     
     @Test
     public void testNumberFour() {
-        assertEquals(1, cc.numberFours());
+        assertEquals(1, cc.numberRankByCount(4));
     }
     
     @Test
@@ -104,7 +104,7 @@ public class CardCounterTest {
     
     @Test
     public void testHasSingles() {
-        assertTrue(cc.hasSingles());
+        assertTrue(cc.hasRankCount(1));
     }
     
     @Test
@@ -113,16 +113,16 @@ public class CardCounterTest {
                                         Card.THREE_HEARTS, Card.THREE_CLUBS,
                                         Card.THREE_SPADES);
         CardCounter newCc = new CardCounter(newList);
-        assertFalse(newCc.hasSingles());
+        assertFalse(newCc.hasRankCount(1));
     }
     
     @Test
     public void testHighRank() {
-        assertEquals(Ranks.KING, cc.highestSingleRank());
+        assertEquals(Ranks.KING, cc.highestRankByCount(1));
     }
     
     @Test
     public void testLowRank() {
-        assertEquals(Ranks.FOUR, cc.lowestSingleRank());
+        assertEquals(Ranks.FOUR, cc.lowestRankByCount(1));
     }
 }

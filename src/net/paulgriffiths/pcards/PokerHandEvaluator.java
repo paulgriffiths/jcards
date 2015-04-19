@@ -33,50 +33,51 @@ public final class PokerHandEvaluator {
     
     private PokerHandScore evaluate() {
         if ( counter.isFlush() && counter.isStraight() ) {
-            if ( counter.lowestSingleRank() == Ranks.TEN ) {
+            if ( counter.lowestRankByCount(1) == Ranks.TEN ) {
                 return new PokerHandScore(PokerHands.ROYAL_FLUSH);
             }
             else {
                 return new PokerHandScore(PokerHands.STRAIGHT_FLUSH,
-                                          counter.lowestSingleRank().getValue());
+                                          counter.lowestRankByCount(1).getValue());
             }
         }
-        else if ( counter.numberFours() == 1) {
+        else if ( counter.numberRankByCount(4) == 1) {
             return new PokerHandScore(PokerHands.FOUR,
-                                      counter.highestFourRank().getValue(),
-                                      counter.highestSingleRank().getValue());
+                                      counter.highestRankByCount(4).getValue(),
+                                      counter.highestRankByCount(1).getValue());
         }
-        else if ( counter.numberThrees() == 1 && counter.numberPairs() == 1 ) {
+        else if ( counter.numberRankByCount(3) == 1 &&
+                  counter.numberRankByCount(2) == 1 ) {
             return new PokerHandScore(PokerHands.FULL_HOUSE,
-                                      counter.highestThreeRank().getValue(),
-                                      counter.highestPairRank().getValue());
+                                      counter.highestRankByCount(3).getValue(),
+                                      counter.highestRankByCount(2).getValue());
         }
         else if ( counter.isFlush() ) {
             return new PokerHandScore(PokerHands.FLUSH,
-                                      counter.singlesScore());
+                                      counter.rankScoreByCount(1));
         }
         else if ( counter.isStraight() ) {
             return new PokerHandScore(PokerHands.STRAIGHT,
-                                      counter.lowestSingleRank().getValue());
+                                      counter.lowestRankByCount(1).getValue());
         }
-        else if ( counter.numberThrees() == 1 ) {
+        else if ( counter.numberRankByCount(3) == 1 ) {
             return new PokerHandScore(PokerHands.THREE,
-                                      counter.highestThreeRank().getValue(),
-                                      counter.singlesScore());
+                                      counter.highestRankByCount(3).getValue(),
+                                      counter.rankScoreByCount(1));
         }
-        else if ( counter.numberPairs() == 2 ) {
+        else if ( counter.numberRankByCount(2) == 2 ) {
             return new PokerHandScore(PokerHands.TWO_PAIR,
-                                      counter.highestPairRank().getValue(),
-                                      counter.lowestPairRank().getValue(),
-                                      counter.highestSingleRank().getValue());
+                                      counter.highestRankByCount(2).getValue(),
+                                      counter.lowestRankByCount(2).getValue(),
+                                      counter.highestRankByCount(1).getValue());
         }
-        else if ( counter.numberPairs() == 1 ) {
+        else if ( counter.numberRankByCount(2) == 1 ) {
             return new PokerHandScore(PokerHands.PAIR,
-                                      counter.highestPairRank().getValue(),
-                                      counter.singlesScore());
+                                      counter.highestRankByCount(2).getValue(),
+                                      counter.rankScoreByCount(1));
         }
-        else if ( counter.numberSingles() == 5 ) {
-            return new PokerHandScore(PokerHands.HIGH, counter.singlesScore());
+        else if ( counter.numberRankByCount(1) == 5 ) {
+            return new PokerHandScore(PokerHands.HIGH, counter.rankScoreByCount(1));
         }
         else {
             throw new UnsupportedOperationException("Poker hand evaluation failed");
