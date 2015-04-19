@@ -16,11 +16,11 @@
  */
 package PokerHandEvaluatorTests;
 
-import net.paulgriffiths.pcards.Card;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import net.paulgriffiths.pcards.*;
+import net.paulgriffiths.pcards.poker.*;
 
 /**
  *

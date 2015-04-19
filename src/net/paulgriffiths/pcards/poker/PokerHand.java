@@ -14,32 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.paulgriffiths.pcards;
+package net.paulgriffiths.pcards.poker;
+
+import net.paulgriffiths.pcards.*;
 
 /**
  *
  * @author paul
  */
-public enum PokerHands {
-    HIGH ("High card"),
-    PAIR ("Pair"),
-    TWO_PAIR ("Two pair"),
-    THREE ("Three of a kind"),
-    STRAIGHT ("Straight"),
-    FLUSH ("Flush"),
-    FULL_HOUSE ("Full house"),
-    FOUR ("Four of a kind"),
-    STRAIGHT_FLUSH ("Straight flush"),
-    ROYAL_FLUSH ("Royal flush");
-    
-    private final String name;
-    
-    PokerHands(final String name) {
-        this.name = name;
+public final class PokerHand extends Hand {
+    public PokerHand(final Card card, final Card... cards) {
+        super(card, cards);
+        checkLegalSize();
     }
     
-    @Override
-    public String toString() {
-        return name;
+    public PokerHand(final PokerHand hand) {
+        super(hand);
+    }
+    
+    public PokerHand(final CardList list) {
+        super(list);
+        checkLegalSize();
+    }
+    
+    private void checkLegalSize() {
+        if ( size() != 5 ) {
+            throw new IllegalArgumentException("poker hands must have five cards");
+        }
     }
 }

@@ -16,12 +16,11 @@
  */
 package PokerHandTests;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import net.paulgriffiths.pcards.*;
+import net.paulgriffiths.pcards.poker.*;
 
 /**
  *
@@ -30,14 +29,6 @@ import net.paulgriffiths.pcards.*;
 public class ConstructorTest {
     
     public ConstructorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
     }
     
     @Test
@@ -51,6 +42,7 @@ public class ConstructorTest {
     public void testConstructWithFourCards() {
         PokerHand ph = new PokerHand(Card.ACE_CLUBS,
             Card.ACE_DIAMONDS, Card.ACE_HEARTS, Card.ACE_SPADES);
+        fail("exception not thrown");
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -58,5 +50,6 @@ public class ConstructorTest {
         PokerHand ph = new PokerHand(Card.ACE_CLUBS,
             Card.ACE_DIAMONDS, Card.ACE_HEARTS, Card.ACE_SPADES,
             Card.KING_CLUBS, Card.KING_DIAMONDS);
+        fail("exception not thrown");
     }
 }
