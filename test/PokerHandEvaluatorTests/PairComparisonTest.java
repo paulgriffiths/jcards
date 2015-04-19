@@ -38,7 +38,10 @@ public class PairComparisonTest {
             Card.NINE_SPADES, Card.SEVEN_CLUBS, Card.THREE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.PAIR, e1.handType());
+        assertEquals(PokerHands.PAIR, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -49,7 +52,10 @@ public class PairComparisonTest {
             Card.NINE_SPADES, Card.SIX_CLUBS, Card.TWO_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.PAIR, e1.handType());
+        assertEquals(PokerHands.PAIR, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -60,7 +66,10 @@ public class PairComparisonTest {
             Card.NINE_SPADES, Card.SEVEN_CLUBS, Card.TWO_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.PAIR, e1.handType());
+        assertEquals(PokerHands.PAIR, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -71,6 +80,8 @@ public class PairComparisonTest {
             Card.NINE_SPADES, Card.SEVEN_CLUBS, Card.THREE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.PAIR, e1.handType());
+        assertEquals(PokerHands.PAIR, e2.handType());
         assertTrue(e1.matches(e2));
     }
 }

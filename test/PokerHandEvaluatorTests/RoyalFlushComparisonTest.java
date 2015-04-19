@@ -25,9 +25,9 @@ import net.paulgriffiths.pcards.*;
  *
  * @author paul
  */
-public class RoyalFlushCompareTest {
+public class RoyalFlushComparisonTest {
     
-    public RoyalFlushCompareTest() {
+    public RoyalFlushComparisonTest() {
     }
     
     @Test
@@ -40,14 +40,8 @@ public class RoyalFlushCompareTest {
                                      Card.TEN_HEARTS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(h1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(h2);
-        
+        assertEquals(PokerHands.ROYAL_FLUSH, e1.handType());
+        assertEquals(PokerHands.ROYAL_FLUSH, e2.handType());
         assertTrue(e1.matches(e2));
-        assertTrue(e2.matches(e1));
-        assertTrue(e1.matches(e1));
-        assertTrue(e2.matches(e2));
-        assertFalse(e1.beats(e2));
-        assertFalse(e1.losesTo(e2));
-        assertFalse(e2.beats(e1));
-        assertFalse(e2.losesTo(e1));
     }
 }

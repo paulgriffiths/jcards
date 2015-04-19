@@ -38,6 +38,8 @@ public class HighCardComparisonTest {
             Card.NINE_HEARTS, Card.SEVEN_SPADES, Card.TWO_CLUBS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.HIGH, e1.handType());
+        assertEquals(PokerHands.HIGH, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
@@ -50,6 +52,8 @@ public class HighCardComparisonTest {
             Card.EIGHT_HEARTS, Card.SEVEN_SPADES, Card.TWO_CLUBS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.HIGH, e1.handType());
+        assertEquals(PokerHands.HIGH, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
@@ -62,6 +66,8 @@ public class HighCardComparisonTest {
             Card.NINE_HEARTS, Card.SIX_SPADES, Card.TWO_CLUBS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.HIGH, e1.handType());
+        assertEquals(PokerHands.HIGH, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
@@ -74,6 +80,8 @@ public class HighCardComparisonTest {
             Card.NINE_HEARTS, Card.SEVEN_SPADES, Card.TWO_CLUBS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.HIGH, e1.handType());
+        assertEquals(PokerHands.HIGH, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
@@ -86,6 +94,8 @@ public class HighCardComparisonTest {
             Card.NINE_SPADES, Card.SEVEN_CLUBS, Card.THREE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.HIGH, e1.handType());
+        assertEquals(PokerHands.HIGH, e2.handType());
         assertTrue(e1.matches(e2));
     }
 }

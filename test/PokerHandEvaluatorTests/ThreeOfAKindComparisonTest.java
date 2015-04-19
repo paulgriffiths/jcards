@@ -38,7 +38,10 @@ public class ThreeOfAKindComparisonTest {
             Card.FOUR_SPADES, Card.KING_CLUBS, Card.ACE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.THREE, e1.handType());
+        assertEquals(PokerHands.THREE, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -49,7 +52,10 @@ public class ThreeOfAKindComparisonTest {
             Card.QUEEN_SPADES, Card.SIX_CLUBS, Card.THREE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.THREE, e1.handType());
+        assertEquals(PokerHands.THREE, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -60,7 +66,10 @@ public class ThreeOfAKindComparisonTest {
             Card.QUEEN_SPADES, Card.SEVEN_CLUBS, Card.TWO_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.THREE, e1.handType());
+        assertEquals(PokerHands.THREE, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -71,7 +80,10 @@ public class ThreeOfAKindComparisonTest {
             Card.QUEEN_SPADES, Card.SIX_CLUBS, Card.TWO_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.THREE, e1.handType());
+        assertEquals(PokerHands.THREE, e2.handType());
         assertTrue(e1.beats(e2));
+        assertTrue(e2.losesTo(e1));
     }
     
     @Test
@@ -82,6 +94,8 @@ public class ThreeOfAKindComparisonTest {
             Card.QUEEN_SPADES, Card.SEVEN_CLUBS, Card.THREE_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
+        assertEquals(PokerHands.THREE, e1.handType());
+        assertEquals(PokerHands.THREE, e2.handType());
         assertTrue(e1.matches(e2));
     }
 }

@@ -25,76 +25,76 @@ import net.paulgriffiths.pcards.*;
  *
  * @author paul
  */
-public class FourOfAKindComparisonTest {
-     
-    public FourOfAKindComparisonTest() {
+public class FullHouseComparisonTest {
+    
+    public FullHouseComparisonTest() {
     }
     
     @Test
-    public void testCompareFourAllSame() {
+    public void testCompareFullHouseAllSame() {
         PokerHand p1 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_SPADES);
-        PokerHand p2 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_HEARTS);
+            Card.JACK_SPADES, Card.SEVEN_CLUBS, Card.SEVEN_SPADES);
+        PokerHand p2 = new PokerHand(Card.JACK_HEARTS, Card.JACK_SPADES,
+            Card.JACK_DIAMONDS, Card.SEVEN_HEARTS, Card.SEVEN_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
-        assertEquals(PokerHands.FOUR, e1.handType());
-        assertEquals(PokerHands.FOUR, e2.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e1.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e2.handType());
         assertTrue(e1.matches(e2));
     }
     
     @Test
-    public void testCompareFourFourHigherSpareSame() {
+    public void testCompareFullHouseThreeHigherPairSame() {
         PokerHand p1 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_SPADES);
-        PokerHand p2 = new PokerHand(Card.TEN_CLUBS, Card.TEN_HEARTS,
-            Card.TEN_SPADES, Card.TEN_DIAMONDS, Card.SEVEN_HEARTS);
+            Card.JACK_SPADES, Card.SEVEN_CLUBS, Card.SEVEN_SPADES);
+        PokerHand p2 = new PokerHand(Card.TEN_HEARTS, Card.TEN_SPADES,
+            Card.TEN_DIAMONDS, Card.SEVEN_HEARTS, Card.SEVEN_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
-        assertEquals(PokerHands.FOUR, e1.handType());
-        assertEquals(PokerHands.FOUR, e2.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e1.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
     
     @Test
-    public void testCompareFourFourHigherSpareLower() {
+    public void testCompareFullHouseThreeHigherPairLower() {
         PokerHand p1 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_SPADES);
-        PokerHand p2 = new PokerHand(Card.TEN_CLUBS, Card.TEN_HEARTS,
-            Card.TEN_SPADES, Card.TEN_DIAMONDS, Card.SIX_HEARTS);
+            Card.JACK_SPADES, Card.SEVEN_CLUBS, Card.SEVEN_SPADES);
+        PokerHand p2 = new PokerHand(Card.TEN_HEARTS, Card.TEN_SPADES,
+            Card.TEN_DIAMONDS, Card.SIX_HEARTS, Card.SIX_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
-        assertEquals(PokerHands.FOUR, e1.handType());
-        assertEquals(PokerHands.FOUR, e2.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e1.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
     
     @Test
-    public void testCompareFourFourHigherSpareHigher() {
+    public void testCompareFullHouseThreeHigherPairHigher() {
         PokerHand p1 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_SPADES);
-        PokerHand p2 = new PokerHand(Card.TEN_CLUBS, Card.TEN_HEARTS,
-            Card.TEN_SPADES, Card.TEN_DIAMONDS, Card.KING_HEARTS);
+            Card.JACK_SPADES, Card.SEVEN_CLUBS, Card.SEVEN_SPADES);
+        PokerHand p2 = new PokerHand(Card.TEN_HEARTS, Card.TEN_SPADES,
+            Card.TEN_DIAMONDS, Card.KING_HEARTS, Card.KING_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
-        assertEquals(PokerHands.FOUR, e1.handType());
-        assertEquals(PokerHands.FOUR, e2.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e1.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
     
     @Test
-    public void testCompareFourFourSameSpareHigher() {
+    public void testCompareFullHouseThreeSamePairHigher() {
         PokerHand p1 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SEVEN_SPADES);
-        PokerHand p2 = new PokerHand(Card.JACK_CLUBS, Card.JACK_HEARTS,
-            Card.JACK_SPADES, Card.JACK_DIAMONDS, Card.SIX_HEARTS);
+            Card.JACK_SPADES, Card.SEVEN_CLUBS, Card.SEVEN_SPADES);
+        PokerHand p2 = new PokerHand(Card.JACK_HEARTS, Card.JACK_SPADES,
+            Card.JACK_DIAMONDS, Card.SIX_HEARTS, Card.SIX_DIAMONDS);
         PokerHandEvaluator e1 = new PokerHandEvaluator(p1);
         PokerHandEvaluator e2 = new PokerHandEvaluator(p2);
-        assertEquals(PokerHands.FOUR, e1.handType());
-        assertEquals(PokerHands.FOUR, e2.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e1.handType());
+        assertEquals(PokerHands.FULL_HOUSE, e2.handType());
         assertTrue(e1.beats(e2));
         assertTrue(e2.losesTo(e1));
     }
