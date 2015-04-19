@@ -81,47 +81,47 @@ public final class CardCounter {
     }
     
     private int singlesRange() {
-        return rankComboCounter.singlesRange();
+        return rankComboCounter.rangeByCount(1);
     }
     
     public int numberSingles() {
-        return rankComboCounter.numberSingles();
+        return rankComboCounter.numberByCount(1);
     }
     
     public int numberPairs() {
-        return rankComboCounter.numberPairs();
+        return rankComboCounter.numberByCount(2);
     }
     
     public int numberThrees() {
-        return rankComboCounter.numberThrees();
+        return rankComboCounter.numberByCount(3);
     }
     
     public int numberFours() {
-        return rankComboCounter.numberFours();
+        return rankComboCounter.numberByCount(4);
     }
     
     public Ranks lowestPairRank() {
-        return rankComboCounter.lowestPair();
+        return rankComboCounter.lowestByCount(2);
     }
     
     public Ranks highestPairRank() {
-        return rankComboCounter.highestPair();
+        return rankComboCounter.highestByCount(2);
     }
     
     public Ranks lowestThreeRank() {
-        return rankComboCounter.lowestThree();
+        return rankComboCounter.lowestByCount(3);
     }
     
     public Ranks highestThreeRank() {
-        return rankComboCounter.highestThree();
+        return rankComboCounter.highestByCount(3);
     }
     
     public Ranks lowestFourRank() {
-        return rankComboCounter.lowestFour();
+        return rankComboCounter.lowestByCount(4);
     }
     
     public Ranks highestFourRank() {
-        return rankComboCounter.highestFour();
+        return rankComboCounter.highestByCount(4);
     }
     
     public boolean hasSingles() {
@@ -129,19 +129,19 @@ public final class CardCounter {
     }
     
     public Ranks highestSingleRank() {
-        return rankComboCounter.highestSingle();
+        return rankComboCounter.highestByCount(1);
     }
     
     private Ranks secondHighestSingleRank() {
-        return rankComboCounter.secondHighestSingle();
+        return rankComboCounter.secondHighestByCount(1);
     }
     
     public Ranks lowestSingleRank() {
-        return rankComboCounter.lowestSingle();
+        return rankComboCounter.lowestByCount(1);
     }
     
     public long singlesScore() {
-        return rankComboCounter.singlesScore();
+        return rankComboCounter.scoreByCount(1);
     }
 }
 

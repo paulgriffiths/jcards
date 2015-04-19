@@ -17,101 +17,65 @@
 package net.paulgriffiths.pcards;
 
 import java.util.TreeSet;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
  * @author paul
  */
 final class RankComboCounter {
-    private final TreeSet<Ranks> singles = new TreeSet<>();
-    private final TreeSet<Ranks> pairs = new TreeSet<>();
-    private final TreeSet<Ranks> threes = new TreeSet<>();
-    private final TreeSet<Ranks> fours = new TreeSet<>();
+    private final Map<Integer, TreeSet<Ranks>> ranksMap = new HashMap<>();
     
     RankComboCounter(final RankCounter rc) {
         for ( Ranks rank : rc.getRanks() ) {
-            switch ( rc.getCount(rank) ) {
-                case 1:
-                    singles.add(rank);
-                    break;
-                    
-                case 2:
-                    pairs.add(rank);
-                    break;
-                    
-                case 3:
-                    threes.add(rank);
-                    break;
-                    
-                case 4:
-                    fours.add(rank);
-                    break;
-            }
+            if ( ! hasCount(rc.getCount(rank)) ) {
+                ranksMap.put(rc.getCount(rank), new TreeSet<>());
+            }            
+            ranksMap.get(rc.getCount(rank)).add(rank);
         }
     }
     
-    public int numberSingles() {
-        return singles.size();
+    public boolean hasCount(final int count) {
+        return countSet(count) == null ? false : true;
     }
     
-    public int numberPairs() {
-        return pairs.size();
+    private TreeSet<Ranks> countSet(final int count) {
+        return ranksMap.get(count) == null ? null : ranksMap.get(count);
     }
     
-    public int numberThrees() {
-        return threes.size();
+    public int numberByCount(final int count) {
+        return hasCount(count) ? countSet(count).size() : 0;
     }
     
-    public int numberFours() {
-        return fours.size();
+    public Ranks highestByCount(final int count) {
+        return hasCount(count) ? countSet(count).last() : null;
     }
     
-    public Ranks lowestPair() {
-        return pairs.first();
+    public Ranks secondHighestByCount(final int count) {
+        if ( hasCount(count) ) {
+            return countSet(count).lower(highestByCount(count));
+        }
+        return null;
     }
     
-    public Ranks highestPair() {
-        return pairs.last();
+    public Ranks lowestByCount(final int count) {
+        return hasCount(count) ? countSet(count).first() : null;
     }
     
-    public Ranks lowestThree() {
-        return threes.first();
+    public int rangeByCount(final int count) {
+        return highestByCount(count).valueDifference(lowestByCount(count));
     }
     
-    public Ranks highestThree() {
-        return threes.last();
-    }
-    
-    public Ranks lowestFour() {
-        return fours.first();
-    }
-    
-    public Ranks highestFour() {
-        return fours.last();
-    }
-    
-    public Ranks lowestSingle() {
-        return singles.first();
-    }
-    
-    public Ranks highestSingle() {
-        return singles.last();
-    }
-    
-    public long singlesScore() {
+    public long scoreByCount(final int count) {
         long score = 0;
-        for ( Ranks rank : singles.descendingSet() ) {
-            score *= Ranks.highestValue();
-            score += rank.getValue();
+        if ( hasCount(count) ) {
+            for ( Ranks rank : countSet(count).descendingSet() ) {
+                score *= Ranks.highestValue();
+                score += rank.getValue();
+            }
         }
         return score;
     }
     
-    public Ranks secondHighestSingle() {
-        return singles.lower(highestSingle());
-    }
-    
-    public int singlesRange() {
-        return highestSingle().valueDifference(lowestSingle());
-    }
 }
