@@ -73,4 +73,12 @@ final class RankComboCounter {
     public Ranks highestSingle() {
         return singles.last();
     }
+    
+    public Ranks secondHighestSingle() {
+        return singles.lower(highestSingle());
+    }
+    
+    public int singlesRange() {
+        return highestSingle().valueDifference(lowestSingle());
+    }
 }

@@ -51,7 +51,6 @@ public enum Ranks {
     public static int highestValue() {
         return 14;
     }
-
     
     Ranks(final String longName, final String shortName,
           final int value, final int index) {
@@ -75,6 +74,10 @@ public enum Ranks {
     
     public int getIndex() {
         return index;
+    }
+    
+    public int valueDifference(final Ranks other) {
+        return Math.abs(this.value - other.value);
     }
     
     @Override

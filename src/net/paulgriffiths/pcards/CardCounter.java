@@ -51,6 +51,10 @@ public final class CardCounter {
         return numberSuits() == 1;
     }
     
+    public int singlesRange() {
+        return rankComboCounter.singlesRange();
+    }
+    
     public int numberSingles() {
         return rankComboCounter.numberSingles();
     }
@@ -73,6 +77,10 @@ public final class CardCounter {
     
     public Ranks highestSingleRank() {
         return rankComboCounter.highestSingle();
+    }
+    
+    public Ranks secondHighestSingleRank() {
+        return rankComboCounter.secondHighestSingle();
     }
     
     public Ranks lowestSingleRank() {
