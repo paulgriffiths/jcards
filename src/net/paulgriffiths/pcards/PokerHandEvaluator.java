@@ -54,7 +54,7 @@ public final class PokerHandEvaluator {
                 return PokerHands.STRAIGHT_FLUSH;
             }
         }
-        if ( counter.numberFours() == 1) {
+        else if ( counter.numberFours() == 1) {
             return PokerHands.FOUR;
         }
         else if ( counter.numberThrees() == 1 && counter.numberPairs() == 1 ) {
