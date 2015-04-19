@@ -39,6 +39,7 @@ public class ConstructorTest {
     @Before
     public void setUp() {
     }
+    
     @Test
     public void testConstructWithFiveCards() {
         PokerHand ph = new PokerHand(Card.ACE_CLUBS,
