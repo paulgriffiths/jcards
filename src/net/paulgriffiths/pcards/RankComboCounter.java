@@ -66,12 +66,45 @@ final class RankComboCounter {
         return fours.size();
     }
     
+    public Ranks lowestPair() {
+        return pairs.first();
+    }
+    
+    public Ranks highestPair() {
+        return pairs.last();
+    }
+    
+    public Ranks lowestThree() {
+        return threes.first();
+    }
+    
+    public Ranks highestThree() {
+        return threes.last();
+    }
+    
+    public Ranks lowestFour() {
+        return fours.first();
+    }
+    
+    public Ranks highestFour() {
+        return fours.last();
+    }
+    
     public Ranks lowestSingle() {
         return singles.first();
     }
     
     public Ranks highestSingle() {
         return singles.last();
+    }
+    
+    public long singlesScore() {
+        long score = 0;
+        for ( Ranks rank : singles.descendingSet() ) {
+            score *= Ranks.highestValue();
+            score += rank.getValue();
+        }
+        return score;
     }
     
     public Ranks secondHighestSingle() {

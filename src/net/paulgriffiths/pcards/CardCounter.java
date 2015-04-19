@@ -100,6 +100,30 @@ public final class CardCounter {
         return rankComboCounter.numberFours();
     }
     
+    public Ranks lowestPairRank() {
+        return rankComboCounter.lowestPair();
+    }
+    
+    public Ranks highestPairRank() {
+        return rankComboCounter.highestPair();
+    }
+    
+    public Ranks lowestThreeRank() {
+        return rankComboCounter.lowestThree();
+    }
+    
+    public Ranks highestThreeRank() {
+        return rankComboCounter.highestThree();
+    }
+    
+    public Ranks lowestFourRank() {
+        return rankComboCounter.lowestFour();
+    }
+    
+    public Ranks highestFourRank() {
+        return rankComboCounter.highestFour();
+    }
+    
     public boolean hasSingles() {
         return numberSingles() > 0;
     }
@@ -114,6 +138,10 @@ public final class CardCounter {
     
     public Ranks lowestSingleRank() {
         return rankComboCounter.lowestSingle();
+    }
+    
+    public long singlesScore() {
+        return rankComboCounter.singlesScore();
     }
 }
 

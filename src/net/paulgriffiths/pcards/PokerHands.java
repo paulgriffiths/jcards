@@ -21,14 +21,25 @@ package net.paulgriffiths.pcards;
  * @author paul
  */
 public enum PokerHands {
-    HIGH,
-    PAIR,
-    TWO_PAIR,
-    THREE,
-    STRAIGHT,
-    FLUSH,
-    FULL_HOUSE,
-    FOUR,
-    STRAIGHT_FLUSH,
-    ROYAL_FLUSH;
+    HIGH ("High card"),
+    PAIR ("Pair"),
+    TWO_PAIR ("Two pair"),
+    THREE ("Three of a kind"),
+    STRAIGHT ("Straight"),
+    FLUSH ("Flush"),
+    FULL_HOUSE ("Full house"),
+    FOUR ("Four of a kind"),
+    STRAIGHT_FLUSH ("Straight flush"),
+    ROYAL_FLUSH ("Royal flush");
+    
+    private final String name;
+    
+    PokerHands(final String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }
