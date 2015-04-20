@@ -73,8 +73,8 @@ public final class CardList implements Iterable<Card> {
         return cardsList.remove(card);
     }
     
-    public void remove(final int index) {
-        cardsList.remove(index);
+    public Card remove(final int index) {
+        return cardsList.remove(index);
     }
     
     public Card exchange(final int index, final Card card) {
