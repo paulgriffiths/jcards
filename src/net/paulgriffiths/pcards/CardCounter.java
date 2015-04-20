@@ -110,17 +110,14 @@ public final class CardCounter {
     }
     
     private boolean areSinglesNonWheelStraight() {
-        return hasRankCount(1) &&
-               ( (numberRankByCount(1) == 1) ||
-                 (rankRangeByCount(1) == numberRankByCount(1) - 1) );
+        return rankRangeByCount(1) == (numberRankByCount(1) - 1);
     }
     
     private boolean areSinglesWheelStraight() {
-        return hasRankCount(1) &&
-               ( (numberRankByCount(1) == 1 ) ||
-                 (highestRankByCount(1) == Ranks.ACE &&
-                  lowestRankByCount(1) == Ranks.TWO &&
-                  (secondHighestRankByCount(1).valueDifference(lowestRankByCount(1)) ==
-                   numberRankByCount(1) - 2)) );
+        return highestRankByCount(1) == Ranks.ACE &&
+               ((numberRankByCount(1) == 1 ) ||
+                ((lowestRankByCount(1) == Ranks.TWO) &&
+                 (secondHighestRankByCount(1).valueDifference(lowestRankByCount(1)) ==
+                  numberRankByCount(1) - 2)));
     }
 }
