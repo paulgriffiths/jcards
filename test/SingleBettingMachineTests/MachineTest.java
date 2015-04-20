@@ -237,13 +237,13 @@ public class MachineTest {
         }
     }
     
-    @Test(expected=IllegalBetException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testZeroBetThrows() throws OutOfMoneyException {
         SingleBettingMachine bm = new SingleBettingMachine(20, 15);
         bm.bet(0);
     }
     
-    @Test(expected=IllegalBetException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testNegativeBetThrows() throws OutOfMoneyException {
         SingleBettingMachine bm = new SingleBettingMachine(20, 15);
         bm.bet(-1);

@@ -70,10 +70,10 @@ public class SingleBettingMachine {
         validateReadyForBet();
         
         if ( bet == 0 ) {
-            throw new IllegalBetException("you cannot bet zero");
+            throw new IllegalArgumentException("you cannot bet zero");
         }
         else if ( bet < 0 ) {
-            throw new IllegalBetException("bet cannot be negative");
+            throw new IllegalArgumentException("bet cannot be negative");
         }
         else if ( bet > pot ) {
             throw new OutOfMoneyException("bet " + bet + " with pot " + pot);
