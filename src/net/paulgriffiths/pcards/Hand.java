@@ -35,6 +35,10 @@ public class Hand {
         cardsList = new CardList(hand.cardsList);
     }
     
+    public Hand(final Deck deck, final int count) {
+        this(deck.drawCards(count));
+    }
+    
     public Hand() {
         cardsList = new CardList();
     }
@@ -45,6 +49,10 @@ public class Hand {
     
     public final int size() {
         return cardsList.size();
+    }
+    
+    public boolean isEmpty() {
+        return size() == 0;
     }
     
     @Override
