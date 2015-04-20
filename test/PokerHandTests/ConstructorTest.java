@@ -36,6 +36,7 @@ public class ConstructorTest {
         PokerHand ph = new PokerHand(Card.ACE_CLUBS,
             Card.ACE_DIAMONDS, Card.ACE_HEARTS, Card.ACE_SPADES,
             Card.KING_CLUBS);
+        assertEquals("[AC,AD,AH,AS,KC]", ph.toString());
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -51,5 +52,11 @@ public class ConstructorTest {
             Card.ACE_DIAMONDS, Card.ACE_HEARTS, Card.ACE_SPADES,
             Card.KING_CLUBS, Card.KING_DIAMONDS);
         fail("exception not thrown");
+    }
+    
+    @Test
+    public void testConstructWithDeck() {
+        PokerHand ph = new PokerHand(new Deck());
+        assertEquals("[2C,3C,4C,5C,6C]", ph.toString());
     }
 }

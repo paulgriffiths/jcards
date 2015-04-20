@@ -37,6 +37,10 @@ public final class PokerHand extends Hand {
         checkLegalSize();
     }
     
+    public PokerHand(final Deck deck) {
+        super(deck, 5);
+    }
+    
     private void checkLegalSize() {
         if ( size() != 5 ) {
             throw new IllegalArgumentException("poker hands must have five cards");
