@@ -33,7 +33,7 @@ public class AddTest {
     @Test
     public void testAddSingleCard() {
         Deck deck = new Deck();
-        deck.addCard(Card.SEVEN_DIAMONDS);
+        deck.add(Card.SEVEN_DIAMONDS);
         assertEquals(0, deck.discardsSize());
         assertEquals(53, deck.size());
         
@@ -44,7 +44,7 @@ public class AddTest {
     @Test
     public void testAddTwoCards() {
         Deck deck = new Deck();
-        deck.addCards(new CardList(Card.SEVEN_DIAMONDS, Card.TWO_HEARTS));
+        deck.add(new CardList(Card.SEVEN_DIAMONDS, Card.TWO_HEARTS));
         assertEquals(0, deck.discardsSize());
         assertEquals(54, deck.size());
         
@@ -53,4 +53,17 @@ public class AddTest {
         assertEquals(Card.TWO_HEARTS, list.get(53));
     }
     
+    @Test
+    public void testAddFromHand() {
+        Hand hand = new Hand(Card.NINE_HEARTS, Card.FIVE_CLUBS, Card.TWO_SPADES);
+        Deck deck = new Deck();
+        deck.add(hand);
+        assertEquals(55, deck.size());
+        assertEquals(0, deck.discardsSize());
+        
+        CardList list = deck.drawCards(55);
+        assertEquals(Card.NINE_HEARTS, list.get(52));
+        assertEquals(Card.FIVE_CLUBS, list.get(53));
+        assertEquals(Card.TWO_SPADES, list.get(54));
+    }
 }

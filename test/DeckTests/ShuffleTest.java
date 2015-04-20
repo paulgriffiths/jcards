@@ -42,7 +42,7 @@ public class ShuffleTest {
     public void testShuffleAfterDiscard() {
         Deck deck = new Deck();
         CardList list = deck.drawCards(5);
-        deck.discardCards(list);
+        deck.discard(list);
         assertEquals(47, deck.size());
         assertEquals(5, deck.discardsSize());
         
@@ -55,7 +55,7 @@ public class ShuffleTest {
     public void testReplaceDiscardsAndShuffle() {
         Deck deck = new Deck();
         CardList list = deck.drawCards(5);
-        deck.discardCards(list);
+        deck.discard(list);
         assertEquals(47, deck.size());
         assertEquals(5, deck.discardsSize());
         

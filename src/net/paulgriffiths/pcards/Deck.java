@@ -58,20 +58,28 @@ public final class Deck {
         return newList;
     }
     
-    public void addCard(final Card card) {
+    public void add(final Card card) {
         store.add(card);
     }
     
-    public void addCards(final CardList list) {
+    public void add(final CardList list) {
         store.add(list);
     }
     
-    public void discardCard(final Card card) {
+    public void add(final Hand hand) {
+        store.add(hand.getCardList());
+    }
+    
+    public void discard(final Card card) {
         discardPile.add(card);
     }
     
-    public void discardCards(final CardList list) {
+    public void discard(final CardList list) {
         discardPile.add(list);
+    }
+    
+    public void discard(final Hand hand) {
+        discardPile.add(hand.getCardList());
     }
     
     public void replaceDiscards() {
